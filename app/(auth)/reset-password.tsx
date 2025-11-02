@@ -1,17 +1,17 @@
+import { icons } from "@/assets/icons";
 import AuthGoBack from "@/components/AuthGoBack";
 import Button from "@/components/Button";
+import CustomBottomSheet, { SheetRef } from "@/components/CustomBottomSheet";
 import PasswordInputComponent from "@/components/PasswordInput";
+import SuccessBottomSheet from "@/components/SuccessBottomSheet";
 import Wrapper from "@/components/Wrapper";
 import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
 import { useBanner } from "@/contexts/BannerContext";
-import api from "@/helpers/api";
-import { parseZodFieldErrors } from "@/helpers/parseZodErrors";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
-import { resetPasswordSchema } from "@/validator/auth.validator";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { KeyboardAvoidingView } from "react-native-keyboard-controller";
 
 const ResetPassword = () => {
@@ -26,50 +26,10 @@ const ResetPassword = () => {
   const { getErrorMessage } = useErrorHandler();
   const { showErrorBanner, showSuccessBanner } = useBanner();
 
+  const SuccessSheet = useRef<SheetRef>(null);
+
   const handlePasswordUpdate = async () => {
-    // Error banner will be handled by centralized system
-    if (userData.password !== userData.confirmPassword) {
-      Alert.alert("Passwords do not match");
-      return;
-    }
-
-    const _parsed = resetPasswordSchema.safeParse({
-      password: userData.password,
-      confirmPassword: userData.confirmPassword,
-    });
-
-    if (!_parsed.success) {
-      const errorMessages = parseZodFieldErrors(
-        _parsed.error.flatten().fieldErrors
-      );
-      setError(errorMessages);
-      console.log(errorMessages);
-      return;
-    }
-
-    const data = {
-      email: email,
-      otpCode: otpCode,
-      newPassword: userData.password,
-    };
-
-    try {
-      setLoading(true);
-      await api.post("/auth/reset-password", data);
-      showSuccessBanner(
-        "Password reset successfully! Please login with your new password."
-      );
-      router.push("/login");
-    } catch (error) {
-      const errorMessage = getErrorMessage(error);
-      showErrorBanner(
-        typeof errorMessage === "string"
-          ? errorMessage
-          : "Password reset failed. Please try again."
-      );
-    } finally {
-      setLoading(false);
-    }
+    SuccessSheet.current?.show();
   };
 
   return (
@@ -83,7 +43,7 @@ const ResetPassword = () => {
         </View>
 
         <View style={styles.formContainer}>
-          <View style={{ marginTop: 40, width: "100%" }}>
+          <View style={{ marginTop: 30, width: "100%" }}>
             <PasswordInputComponent
               label="Password"
               value={userData.password}
@@ -132,6 +92,19 @@ const ResetPassword = () => {
           </View>
         </View>
       </KeyboardAvoidingView>
+
+      <CustomBottomSheet ref={SuccessSheet} snapPoint={55}>
+        <SuccessBottomSheet
+          desc="Your password have been reset successfully, you can now log into point of sale with your email and new password."
+          title="Password reset successful"
+          showBtn
+          onPress={() => SuccessSheet.current?.hide()}
+          btnTitle="Login to my account"
+          image={icons.successIcon}
+          headerTitle="Password reset"
+          close={() => SuccessSheet.current?.hide()}
+        />
+      </CustomBottomSheet>
     </Wrapper>
   );
 };
