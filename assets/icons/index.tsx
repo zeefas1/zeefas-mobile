@@ -5,4 +5,5 @@ export const icons = {
   googleIcon: require("./google-icon.png"),
   appleIcon: require("./apple-icon.png"),
   roundLogo: require("./round-logo.png"),
+  otpIcon: require("./otp-icon.png"),
 };

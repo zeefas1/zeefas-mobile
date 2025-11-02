@@ -1,6 +1,8 @@
+import AuthGoBack from "@/components/AuthGoBack";
 import Button from "@/components/Button";
 import PasswordInputComponent from "@/components/PasswordInput";
 import Wrapper from "@/components/Wrapper";
+import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
 import { useBanner } from "@/contexts/BannerContext";
 import api from "@/helpers/api";
@@ -10,7 +12,7 @@ import { resetPasswordSchema } from "@/validator/auth.validator";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { KeyboardAvoidingView } from "react-native-keyboard-controller";
 
 const ResetPassword = () => {
   const { email, type, otpCode } = useLocalSearchParams();
@@ -72,53 +74,60 @@ const ResetPassword = () => {
 
   return (
     <Wrapper bg="#fff">
-      <KeyboardAwareScrollView
-        style={styles.container}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.header}>
-          <Text style={styles.headerText}>New password</Text>
-          <Text style={styles.subText}>Setup a new password</Text>
+      <AuthGoBack />
+
+      <KeyboardAvoidingView style={styles.container}>
+        <View style={{ marginTop: 22 }}>
+          <Text style={styles.title}>Reset Password </Text>
+          <Text style={styles.subtitle}>Enter the new password</Text>
         </View>
 
-        <View style={{ marginTop: 40, width: "100%" }}>
-          <PasswordInputComponent
-            label="Enter new password"
-            value={userData.password}
-            onChangeText={(text) =>
-              setUserData((prevState) => ({
-                ...prevState,
-                password: text,
-              }))
-            }
-            placeholder="Enter your password"
-            iconName="lock-closed"
-            autoCapitalize="none"
-            error={error && error?.password}
-            editable={!loading}
-          />
-          <View style={styles.forgotPassword}>
-            <Text style={styles.forgotPasswordText}>
-              Min 8 chars, 1 number & symbol
-            </Text>
-          </View>
+        <View
+          style={{
+            justifyContent: "space-between",
+            width: "100%",
+            flex: 1,
+            marginBottom: 54,
+          }}
+        >
+          <View style={{ marginTop: 40, width: "100%" }}>
+            <PasswordInputComponent
+              label="Password"
+              value={userData.password}
+              onChangeText={(text) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  password: text,
+                }))
+              }
+              placeholder="input password"
+              iconName="lock-closed"
+              autoCapitalize="none"
+              error={error && error?.password}
+              editable={!loading}
+            />
+            <View style={styles.forgotPassword}>
+              <Text style={styles.forgotPasswordText}>
+                Min 8 chars, 1 number & symbol
+              </Text>
+            </View>
 
-          <PasswordInputComponent
-            label="Confirm new password"
-            value={userData.confirmPassword}
-            onChangeText={(text) =>
-              setUserData((prevState) => ({
-                ...prevState,
-                confirmPassword: text,
-              }))
-            }
-            placeholder="Re-enter your password "
-            iconName="lock-closed"
-            autoCapitalize="none"
-            error={error && error?.confirmPassword}
-            editable={!loading}
-          />
+            <PasswordInputComponent
+              label="Confirm password"
+              value={userData.confirmPassword}
+              onChangeText={(text) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  confirmPassword: text,
+                }))
+              }
+              placeholder="input password"
+              iconName="lock-closed"
+              autoCapitalize="none"
+              error={error && error?.confirmPassword}
+              editable={!loading}
+            />
+          </View>
 
           <View style={{ marginTop: 40, width: "100%" }}>
             <Button
@@ -129,7 +138,7 @@ const ResetPassword = () => {
             />
           </View>
         </View>
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     </Wrapper>
   );
 };
@@ -141,21 +150,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
 
-  header: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 50,
-    gap: 10,
+  title: {
+    fontSize: 30,
+    lineHeight: 46,
+    fontFamily: FontFamily.SemiBold,
+    color: "#1F2937",
   },
-  headerText: {
-    fontSize: FontSizes["2xl"],
-    fontFamily: "PublicSansSemiBold",
-    color: "#151515",
-  },
-  subText: {
-    fontSize: FontSizes.md,
-    fontFamily: "PublicSansRegular",
-    color: "#808080",
+
+  subtitle: {
+    fontSize: FontSizes.lg,
+    lineHeight: 24,
+    fontFamily: FontFamily.Regular,
+    color: "#6B7280",
   },
 
   forgotPassword: {

@@ -10,7 +10,6 @@ import Wrapper from "@/components/Wrapper";
 import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
 import { useBanner } from "@/contexts/BannerContext";
-import api from "@/helpers/api";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import useTimer from "@/hooks/useTimer";
 import { useAuth } from "@/store/auth.store";
@@ -45,58 +44,17 @@ const OTP = () => {
 
   const handleOTPComplete = async () => {
     // Error banner will be handled by centralized system
-
-    const data = {
-      email: email,
-      otp: code,
-      type: "ACCOUNT_VERIFICATION",
-    };
-
-    try {
-      setLoading(true);
-      const { data: res } = await api.post("/auth/verify-otp", data);
-
-      console.log(JSON.stringify(res, null, 2));
-      console.log(JSON.stringify(res?.data?.accessToken, null, 2));
-
-      await setAuth(res?.data?.accessToken);
-      setUser(res?.data?.user);
-      showSuccessBanner("Account verified successfully! Welcome!");
-      router.replace("/");
-    } catch (error) {
-      const errorMessage = getErrorMessage(error);
-      showErrorBanner(
-        typeof errorMessage === "string"
-          ? errorMessage
-          : "Verification failed. Please try again."
-      );
-    } finally {
-      setLoading(false);
-    }
+    router.push({
+      pathname: "/(auth)/reset-password",
+      params: {
+        email,
+        type,
+        code,
+      },
+    });
   };
 
-  const handleResendEmail = async () => {
-    const data = {
-      email,
-      type: "ACCOUNT_VERIFICATION",
-    };
-
-    try {
-      setLoading(true);
-      await api.post(`/auth/resend-otp`, data);
-      showSuccessBanner("OTP resent successfully! Please check your email.");
-      resetTimer(60);
-    } catch (error) {
-      const errorMessage = getErrorMessage(error);
-      showErrorBanner(
-        typeof errorMessage === "string"
-          ? errorMessage
-          : "Failed to resend OTP. Please try again."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleResendEmail = async () => {};
 
   return (
     <Wrapper bg="#fff">
@@ -104,9 +62,13 @@ const OTP = () => {
       <View style={styles.container}>
         <View>
           <View style={styles.header}>
-            <Image source={icons.roundLogo} style={styles.image} />
+            <Image
+              source={icons.otpIcon}
+              style={styles.image}
+              contentFit="cover"
+            />
 
-            <View style={{ marginTop: 22 }}>
+            <View>
               <Text style={styles.title}>Forgot password </Text>
               <Text style={styles.subtitle}>
                 Insert the 4 digit code sent to 0801234567 Via SMS and WhatsApp
@@ -114,7 +76,7 @@ const OTP = () => {
             </View>
           </View>
 
-          <View style={{ marginTop: 24, width: "100%", alignItems: "center" }}>
+          <View style={{ marginTop: 24, width: "100%" }}>
             <OtpInput
               autoFocus
               onTextChange={(code) => setCode(code)}
@@ -137,14 +99,24 @@ const OTP = () => {
               }}
             />
 
-            <TouchableOpacity onPress={handleResendEmail} disabled={time > 0}>
+            <View>
               <View style={styles.signContainer}>
-                <Text style={styles.signDesc}>I did not get the code.</Text>
-                <Text style={styles.signUpText}>
-                  {time > 0 ? formattedTime : "Resend"}
-                </Text>
+                <Text style={styles.signDesc}>Didn’t get the code?</Text>
+
+                <TouchableOpacity
+                  onPress={handleResendEmail}
+                  disabled={time > 0}
+                >
+                  <Text style={styles.signUpText}>Resend</Text>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
+
+              {time > 0 && (
+                <Text style={[styles.signUpText, { marginTop: 16 }]}>
+                  {time > 0 && formattedTime}
+                </Text>
+              )}
+            </View>
           </View>
         </View>
 
@@ -177,7 +149,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 72,
+    width: 40,
     height: 72,
   },
 
@@ -204,8 +176,8 @@ const styles = StyleSheet.create({
 
   signContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    alignSelf: "flex-start",
     marginTop: 20,
     gap: 4,
   },
@@ -214,14 +186,14 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.sm,
     lineHeight: 16,
     fontFamily: FontFamily.Medium,
-    color: "#4D4D4D",
+    color: "#111827",
   },
 
   signUpText: {
     fontSize: FontSizes.sm,
     lineHeight: 16,
     fontFamily: FontFamily.Medium,
-    color: "#5E42D9",
+    color: "#4BB96C",
   },
 });
 
