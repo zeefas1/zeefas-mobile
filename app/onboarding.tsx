@@ -1,92 +1,113 @@
-import Button from "@/components/Button";
+import { icons } from "@/assets/icons";
+import OAuthBtn from "@/components/OAuthBtn";
 import Wrapper from "@/components/Wrapper";
-import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
+import useOnboardingStatus from "@/store/onboardingStatus.store";
+
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { Redirect, useRouter } from "expo-router";
+
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-const Onboarding = () => {
+const AuthOnboarding = () => {
   const router = useRouter();
+  const { onboardingStatus } = useOnboardingStatus();
+
+  if (!onboardingStatus) {
+    return <Redirect href="/login" />;
+  }
+
   return (
-    <>
-      <Wrapper bg="#133D51">
+    <Wrapper paddingHorizontal={22} bg="#fff">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <View style={styles.container}>
-          <Image
-            source={require("@/assets/images/onboarding-img.png")}
-            style={styles.image}
-            contentFit="contain"
-          />
+          <Image source={icons.roundLogo} style={styles.image} />
 
-          <View style={styles.bottom}>
-            {/* <Image
-              source={icons.logo}
-              style={styles.icon}
-              contentFit="contain"
-            /> */}
+          <View style={styles.buttonContainer}>
+            <OAuthBtn
+              iconName={icons.googleIcon}
+              title="Continue with Google"
+              onPress={() => {}}
+            />
 
-            <Text style={styles.title}>
-              Payroll doesn’t have to be stressful.
-            </Text>
-            <Text style={styles.desc}>
-              Get a clear overview of your payroll expenses and run salaries.
-            </Text>
+            <OAuthBtn
+              iconName={icons.appleIcon}
+              title="Continue with Apple"
+              onPress={() => {}}
+            />
+          </View>
 
-            <Button title="Get Started" onPress={() => router.push("/login")} />
+          <View style={styles.signContainer}>
+            <Text style={styles.signDesc}>Already have an account?</Text>
+            <TouchableOpacity onPress={() => router.push("/login")}>
+              <Text style={styles.signUpText}>Login</Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </Wrapper>
-      <StatusBar style="light" />
-    </>
+      </ScrollView>
+    </Wrapper>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    marginTop: 100,
   },
 
-  image: {
-    width: "100%",
-    height: "100%",
-    marginTop: 50,
-  },
-
-  icon: {
-    width: 56,
+  button: {
+    width: 200,
     height: 44,
   },
 
-  title: {
-    color: "#fff",
-    fontSize: FontSizes["4xl"],
-    fontFamily: FontFamily.Bold as string,
-    textAlign: "center",
-    marginTop: 24,
-    paddingHorizontal: 24,
+  image: {
+    width: 100,
+    height: 100,
   },
-
-  desc: {
-    color: "#fff",
-    fontSize: FontSizes.md,
-    fontFamily: FontFamily.Medium as string,
-    textAlign: "center",
-    marginBottom: 74,
-    marginTop: 4,
-  },
-
-  bottom: {
-    paddingHorizontal: 16,
-    position: "absolute",
-    bottom: 80,
+  buttonContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 16,
     width: "100%",
+    marginTop: 50,
+  },
+
+  signContainer: {
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
+    marginTop: 50,
+    gap: 2,
+  },
+
+  signDesc: {
+    fontSize: FontSizes.md,
+    lineHeight: 16,
+    fontFamily: "PublicSansRegular",
+    color: "#151515",
+  },
+
+  signUpText: {
+    fontSize: FontSizes.lg,
+    lineHeight: 16,
+    fontFamily: "PublicSansSemiBold",
+    color: "#0CE194",
+    // textDecorationLine: "underline",
   },
 });
 
-export default Onboarding;
+export default AuthOnboarding;

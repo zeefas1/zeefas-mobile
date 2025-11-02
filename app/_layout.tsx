@@ -34,10 +34,10 @@ export default function RootLayout() {
   const [authLoaded, setAuthLoaded] = useState(false);
 
   const [loaded] = useFonts({
-    InterRegular: require("../assets/fonts/Inter_18pt-Regular.ttf"),
-    InterMedium: require("../assets/fonts/Inter_18pt-Medium.ttf"),
-    InterSemiBold: require("../assets/fonts/Inter_18pt-SemiBold.ttf"),
-    InterBold: require("../assets/fonts/Inter_18pt-Bold.ttf"),
+    BricolageGrotesqueRegular: require("../assets/fonts/BricolageGrotesque-Regular.ttf"),
+    BricolageGrotesqueMedium: require("../assets/fonts/BricolageGrotesque-Medium.ttf"),
+    BricolageGrotesqueSemiBold: require("../assets/fonts/BricolageGrotesque-SemiBold.ttf"),
+    BricolageGrotesqueBold: require("../assets/fonts/BricolageGrotesque-Bold.ttf"),
   });
 
   useEffect(() => {
