@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#E9E9E9",
+    borderColor: "#D0D5DD",
     fontSize: FontSizes.base,
-    borderRadius: 10,
-    height: 52,
+    borderRadius: 6,
+    height: 48,
     backgroundColor: "#fff",
     fontFamily: "PublicSansRegular",
   },
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
 
   focusedContainer: {
-    borderColor: "#0CE194",
+    borderColor: "#0C503F",
   },
   input: {
     flex: 1,
