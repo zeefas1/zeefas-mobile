@@ -25,7 +25,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <Wrapper paddingHorizontal={20} bg="#fff">
+    <Wrapper paddingHorizontal={24} bg="#fff">
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}

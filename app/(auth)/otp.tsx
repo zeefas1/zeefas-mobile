@@ -4,8 +4,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { OtpInput } from "react-native-otp-entry";
 
+import { icons } from "@/assets/icons";
 import Button from "@/components/Button";
 import Wrapper from "@/components/Wrapper";
+import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
 import { useBanner } from "@/contexts/BannerContext";
 import api from "@/helpers/api";
@@ -14,6 +16,7 @@ import useTimer from "@/hooks/useTimer";
 import { useAuth } from "@/store/auth.store";
 import { useStatusStore } from "@/store/status.store";
 import UserAuth from "@/store/user.store";
+import { Image } from "expo-image";
 import AuthGoBack from "../../components/AuthGoBack";
 
 const OTP = () => {
@@ -98,58 +101,61 @@ const OTP = () => {
   return (
     <Wrapper bg="#fff">
       <AuthGoBack />
-      <View
-        style={styles.container}
-        // showsHorizontalScrollIndicator={false}
-        // showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.header}>
-          <Text style={styles.headerText}>OTP</Text>
-          <Text style={styles.subText}>
-            Please enter the code sent to your email address
-          </Text>
-        </View>
+      <View style={styles.container}>
+        <View>
+          <View style={styles.header}>
+            <Image source={icons.roundLogo} style={styles.image} />
 
-        <View style={{ marginTop: 24, width: "100%", alignItems: "center" }}>
-          <OtpInput
-            autoFocus
-            onTextChange={(code) => setCode(code)}
-            numberOfDigits={6}
-            type="numeric"
-            focusColor="#0CE194"
-            secureTextEntry={false}
-            theme={{
-              containerStyle: {
-                width: "100%",
-              },
-              pinCodeContainerStyle: {
-                width: 50,
-                height: 50,
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: "#E9E9E9",
-              },
-            }}
-          />
-
-          <View style={{ marginTop: 20, width: "100%" }}>
-            <Button
-              title="Confirm"
-              onPress={handleOTPComplete}
-              type="primary"
-              loading={loading}
-              disabled={code.length !== 6}
-            />
-          </View>
-
-          <TouchableOpacity onPress={handleResendEmail} disabled={time > 0}>
-            <View style={styles.signContainer}>
-              <Text style={styles.signDesc}>I did not get the code.</Text>
-              <Text style={styles.signUpText}>
-                {time > 0 ? formattedTime : "Resend"}
+            <View style={{ marginTop: 22 }}>
+              <Text style={styles.title}>Forgot password </Text>
+              <Text style={styles.subtitle}>
+                Insert the 4 digit code sent to 0801234567 Via SMS and WhatsApp
               </Text>
             </View>
-          </TouchableOpacity>
+          </View>
+
+          <View style={{ marginTop: 24, width: "100%", alignItems: "center" }}>
+            <OtpInput
+              autoFocus
+              onTextChange={(code) => setCode(code)}
+              numberOfDigits={6}
+              type="numeric"
+              focusColor="#4BB96C"
+              secureTextEntry={false}
+              theme={{
+                containerStyle: {
+                  width: "100%",
+                },
+                pinCodeContainerStyle: {
+                  width: 50,
+                  height: 50,
+                  borderRadius: 4.5,
+                  borderWidth: 1,
+                  borderColor: "#E2E8F0",
+                  backgroundColor: "#F8FAFC",
+                },
+              }}
+            />
+
+            <TouchableOpacity onPress={handleResendEmail} disabled={time > 0}>
+              <View style={styles.signContainer}>
+                <Text style={styles.signDesc}>I did not get the code.</Text>
+                <Text style={styles.signUpText}>
+                  {time > 0 ? formattedTime : "Resend"}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={{ marginTop: 20, width: "100%" }}>
+          <Button
+            title="Verify number"
+            onPress={handleOTPComplete}
+            type="primary"
+            loading={loading}
+            disabled={code.length !== 6}
+          />
         </View>
       </View>
     </Wrapper>
@@ -159,32 +165,40 @@ const OTP = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
     backgroundColor: "#fff",
+    justifyContent: "space-between",
+    marginBottom: 54,
   },
 
   header: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
+    marginTop: 20,
     gap: 10,
   },
-  headerText: {
-    fontSize: FontSizes["2xl"],
-    fontFamily: "PublicSansSemiBold",
-    color: "#151515",
+
+  image: {
+    width: 72,
+    height: 72,
   },
-  subText: {
-    fontSize: FontSizes.md,
-    fontFamily: "PublicSansRegular",
-    color: "#808080",
+
+  title: {
+    fontSize: 24,
+    fontFamily: FontFamily.SemiBold,
+    color: "#1F2937",
+  },
+
+  subtitle: {
+    fontSize: FontSizes.lg,
+    lineHeight: 24,
+    fontFamily: FontFamily.Regular,
+    color: "#6B7280",
   },
 
   errorText: {
     marginTop: 10,
     color: "#CE0000",
     fontSize: FontSizes.xs,
-    fontFamily: "MontserratMedium",
+    fontFamily: FontFamily.Medium,
     textAlign: "center",
   },
 
@@ -199,14 +213,14 @@ const styles = StyleSheet.create({
   signDesc: {
     fontSize: FontSizes.sm,
     lineHeight: 16,
-    fontFamily: "MontserratMedium",
+    fontFamily: FontFamily.Medium,
     color: "#4D4D4D",
   },
 
   signUpText: {
     fontSize: FontSizes.sm,
     lineHeight: 16,
-    fontFamily: "MontserratMedium",
+    fontFamily: FontFamily.Medium,
     color: "#5E42D9",
   },
 });
