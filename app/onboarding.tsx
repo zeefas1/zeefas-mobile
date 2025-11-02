@@ -57,7 +57,7 @@ const AuthOnboarding = () => {
 
             <Button
               title="Sign up with email"
-              onPress={() => {}}
+              onPress={() => router.push("/register")}
               type="primary"
             />
           </View>
@@ -69,14 +69,18 @@ const AuthOnboarding = () => {
             </TouchableOpacity>
           </View>
 
-          <View style={[styles.signContainer, { width: 340, marginTop: 16 }]}>
-            <Text style={styles.signDesc}>By Signing up, you agree to our</Text>
-            <TouchableOpacity onPress={() => router.push("/login")}>
-              <Text style={styles.signUpText}>terms</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.push("/login")}>
-              <Text style={styles.signUpText}>of services </Text>
-            </TouchableOpacity>
+          <View style={{ alignItems: "center" }}>
+            <View style={[styles.signContainer, styles.center]}>
+              <Text style={styles.signDesc}>
+                By Signing up, you agree to our
+              </Text>
+              <TouchableOpacity onPress={() => router.push("/login")}>
+                <Text style={styles.signUpText}>terms</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push("/login")}>
+                <Text style={styles.signUpText}>of services </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -144,6 +148,13 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.Medium,
     color: "#4BB96C",
     // textDecorationLine: "underline",
+  },
+
+  center: {
+    width: 300,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 16,
   },
 });
 

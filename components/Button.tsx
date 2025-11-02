@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FCF7FF",
   },
   disabledButton: {
-    backgroundColor: "#d8f7eb",
+    backgroundColor: "#9DB9B2",
   },
   text: {
     color: "#fff",
