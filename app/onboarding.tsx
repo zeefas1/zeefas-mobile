@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    fontSize: FontSizes.md,
+    fontSize: FontSizes.lg,
     lineHeight: 24,
     fontFamily: FontFamily.Regular,
     color: "#6B7280",
