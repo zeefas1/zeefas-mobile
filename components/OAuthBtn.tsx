@@ -1,3 +1,4 @@
+import { FontFamily } from "@/constants/FontFamily";
 import { Image } from "expo-image";
 import React from "react";
 import {
@@ -97,9 +98,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F4F4",
   },
   text: {
-    color: "#151515",
+    color: "#374151",
     fontSize: 14,
-    fontFamily: "PublicSansMedium",
+    fontFamily: FontFamily.Medium,
     width: 160,
   },
 });
