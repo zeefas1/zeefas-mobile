@@ -1,3 +1,4 @@
+import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
 import React from "react";
 import {
@@ -62,11 +63,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    height: 55,
+    height: 48,
     width: "100%",
   },
   primaryButton: {
-    backgroundColor: "#0CE194",
+    backgroundColor: "#0C503F",
   },
   secondaryButton: {
     backgroundColor: "#FCF7FF",
@@ -75,14 +76,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#d8f7eb",
   },
   text: {
-    color: "#151515",
+    color: "#fff",
     fontSize: FontSizes.lg,
-    fontFamily: "PublicSansSemiBold",
+    fontFamily: FontFamily.Medium,
   },
   secText: {
     color: "#5E42D9",
     fontSize: FontSizes.md,
-    fontFamily: "PublicSansSemiBold",
+    fontFamily: FontFamily.Medium,
   },
 });
 

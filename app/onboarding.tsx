@@ -1,11 +1,13 @@
 import { icons } from "@/assets/icons";
+import Button from "@/components/Button";
 import OAuthBtn from "@/components/OAuthBtn";
 import Wrapper from "@/components/Wrapper";
+import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
 import useOnboardingStatus from "@/store/onboardingStatus.store";
 
 import { Image } from "expo-image";
-import { Redirect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 import React from "react";
 import {
@@ -20,9 +22,9 @@ const AuthOnboarding = () => {
   const router = useRouter();
   const { onboardingStatus } = useOnboardingStatus();
 
-  if (!onboardingStatus) {
-    return <Redirect href="/login" />;
-  }
+  //   if (!onboardingStatus) {
+  //     return <Redirect href="/login" />;
+  //   }
 
   return (
     <Wrapper paddingHorizontal={22} bg="#fff">
@@ -36,14 +38,20 @@ const AuthOnboarding = () => {
           <View style={styles.buttonContainer}>
             <OAuthBtn
               iconName={icons.googleIcon}
-              title="Continue with Google"
+              title="Sign up with Google"
               onPress={() => {}}
             />
 
             <OAuthBtn
               iconName={icons.appleIcon}
-              title="Continue with Apple"
+              title="Sign up with Apple"
               onPress={() => {}}
+            />
+
+            <Button
+              title="Sign up with email"
+              onPress={() => {}}
+              type="primary"
             />
           </View>
 
@@ -61,10 +69,8 @@ const AuthOnboarding = () => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
     flex: 1,
-    marginTop: 100,
+    marginTop: 70,
   },
 
   button: {
@@ -73,8 +79,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 100,
-    height: 100,
+    width: 72,
+    height: 72,
   },
   buttonContainer: {
     flexDirection: "column",
@@ -97,14 +103,14 @@ const styles = StyleSheet.create({
   signDesc: {
     fontSize: FontSizes.md,
     lineHeight: 16,
-    fontFamily: "PublicSansRegular",
+    fontFamily: FontFamily.Regular,
     color: "#151515",
   },
 
   signUpText: {
     fontSize: FontSizes.lg,
     lineHeight: 16,
-    fontFamily: "PublicSansSemiBold",
+    fontFamily: FontFamily.Medium,
     color: "#0CE194",
     // textDecorationLine: "underline",
   },

@@ -1,14 +1,15 @@
+import Wrapper from "@/components/Wrapper";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 const Login = () => {
   return (
-    <View>
+    <Wrapper paddingHorizontal={24} bg="#fff">
       <Text>Login</Text>
-    </View>
+    </Wrapper>
   );
 };
 
-export default Login;
-
 const styles = StyleSheet.create({});
+
+export default Login;

@@ -87,13 +87,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    height: 50,
+    height: 48,
     width: "100%",
   },
   primaryButton: {
-    backgroundColor: "#fff",
-    borderWidth: 0.5,
-    borderColor: "#E9E9E9",
+    backgroundColor: "#F3F4F6",
   },
   disabledButton: {
     backgroundColor: "#F1F4F4",
