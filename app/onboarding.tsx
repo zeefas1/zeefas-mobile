@@ -27,13 +27,20 @@ const AuthOnboarding = () => {
   //   }
 
   return (
-    <Wrapper paddingHorizontal={22} bg="#fff">
+    <Wrapper paddingHorizontal={24} bg="#fff">
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
       >
         <View style={styles.container}>
           <Image source={icons.roundLogo} style={styles.image} />
+
+          <View style={{ marginTop: 32 }}>
+            <Text style={styles.title}>Welcome to ZeeFas</Text>
+            <Text style={styles.subtitle}>
+              Create an account to start seamless shopping experience on Zeefas
+            </Text>
+          </View>
 
           <View style={styles.buttonContainer}>
             <OAuthBtn
@@ -55,10 +62,20 @@ const AuthOnboarding = () => {
             />
           </View>
 
-          <View style={styles.signContainer}>
+          <View style={[styles.signContainer, { marginTop: 110 }]}>
             <Text style={styles.signDesc}>Already have an account?</Text>
             <TouchableOpacity onPress={() => router.push("/login")}>
               <Text style={styles.signUpText}>Login</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={[styles.signContainer, { width: 340, marginTop: 16 }]}>
+            <Text style={styles.signDesc}>By Signing up, you agree to our</Text>
+            <TouchableOpacity onPress={() => router.push("/login")}>
+              <Text style={styles.signUpText}>terms</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push("/login")}>
+              <Text style={styles.signUpText}>of services </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -71,6 +88,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 70,
+  },
+
+  title: {
+    fontSize: 32,
+    lineHeight: 46,
+    fontFamily: FontFamily.SemiBold,
+    color: "#1F2937",
+  },
+
+  subtitle: {
+    fontSize: FontSizes.md,
+    lineHeight: 24,
+    fontFamily: FontFamily.Regular,
+    color: "#6B7280",
   },
 
   button: {
@@ -88,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 16,
     width: "100%",
-    marginTop: 50,
+    marginTop: 42,
   },
 
   signContainer: {
@@ -96,22 +127,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    marginTop: 50,
     gap: 2,
+    flexWrap: "wrap",
   },
 
   signDesc: {
-    fontSize: FontSizes.md,
-    lineHeight: 16,
+    fontSize: FontSizes.lg,
+    lineHeight: 24,
     fontFamily: FontFamily.Regular,
-    color: "#151515",
+    color: "#323232",
   },
 
   signUpText: {
     fontSize: FontSizes.lg,
     lineHeight: 16,
     fontFamily: FontFamily.Medium,
-    color: "#0CE194",
+    color: "#4BB96C",
     // textDecorationLine: "underline",
   },
 });
