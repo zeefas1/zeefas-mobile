@@ -5,7 +5,7 @@ import PasswordInputComponent from "@/components/PasswordInput";
 import TextInputComponent from "@/components/TextInput";
 import Wrapper from "@/components/Wrapper";
 import { FontFamily } from "@/constants/FontFamily";
-import FontSizes from "@/constants/FontSizes";
+import { FontSizes } from "@/constants/FontSizes";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
