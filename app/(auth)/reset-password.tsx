@@ -82,14 +82,7 @@ const ResetPassword = () => {
           <Text style={styles.subtitle}>Enter the new password</Text>
         </View>
 
-        <View
-          style={{
-            justifyContent: "space-between",
-            width: "100%",
-            flex: 1,
-            marginBottom: 54,
-          }}
-        >
+        <View style={styles.formContainer}>
           <View style={{ marginTop: 40, width: "100%" }}>
             <PasswordInputComponent
               label="Password"
@@ -162,6 +155,13 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontFamily: FontFamily.Regular,
     color: "#6B7280",
+  },
+
+  formContainer: {
+    justifyContent: "space-between",
+    width: "100%",
+    flex: 1,
+    marginBottom: 54,
   },
 
   forgotPassword: {
