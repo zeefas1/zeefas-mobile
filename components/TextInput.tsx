@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: 12,
     fontFamily: "PublicSansRegular",
     fontSize: FontSizes.base,
     height: "100%",
