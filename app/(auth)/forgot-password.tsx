@@ -30,7 +30,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Wrapper bg="#fff">
+    <Wrapper bg="#fff" showBottomImage>
       <AuthGoBack />
       <KeyboardAvoidingView style={styles.container}>
         <View style={{ marginTop: 22 }}>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
   },
 
   title: {

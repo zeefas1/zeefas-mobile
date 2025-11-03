@@ -27,7 +27,7 @@ const AuthOnboarding = () => {
   //   }
 
   return (
-    <Wrapper paddingHorizontal={24} bg="#fff">
+    <Wrapper paddingHorizontal={24} bg="#fff" showBottomImage>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}

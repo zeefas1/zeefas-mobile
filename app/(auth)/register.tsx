@@ -1,14 +1,23 @@
+import Wrapper from "@/components/Wrapper";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 const Register = () => {
   return (
-    <View>
-      <Text>Register</Text>
-    </View>
+    <Wrapper bg="#fff" showBottomImage>
+      <View style={styles.container}>
+        <Text>Register</Text>
+      </View>
+    </Wrapper>
   );
 };
 
-export default Register;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
-const styles = StyleSheet.create({});
+export default Register;

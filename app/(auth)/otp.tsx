@@ -57,7 +57,7 @@ const OTP = () => {
   const handleResendEmail = async () => {};
 
   return (
-    <Wrapper bg="#fff">
+    <Wrapper bg="#fff" showBottomImage>
       <AuthGoBack />
       <View style={styles.container}>
         <View>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
     justifyContent: "space-between",
     marginBottom: 54,
   },

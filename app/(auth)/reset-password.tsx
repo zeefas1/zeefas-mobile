@@ -33,7 +33,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <Wrapper bg="#fff">
+    <Wrapper bg="#fff" showBottomImage>
       <AuthGoBack />
 
       <KeyboardAvoidingView style={styles.container}>
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
   },
 
   title: {
