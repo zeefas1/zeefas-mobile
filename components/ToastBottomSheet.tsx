@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import Button from "./Button";
 
-interface SuccessBottomSheetProps {
+interface ToastBottomSheetProps {
   desc: string;
   showBtn?: boolean;
   onPress?: () => void;
@@ -23,7 +23,7 @@ interface SuccessBottomSheetProps {
   headerTitle?: string;
 }
 
-const SuccessBottomSheet = ({
+const ToastBottomSheet = ({
   headerTitle,
   desc,
   showBtn,
@@ -32,7 +32,7 @@ const SuccessBottomSheet = ({
   title,
   image,
   btnTitle,
-}: SuccessBottomSheetProps) => {
+}: ToastBottomSheetProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SuccessBottomSheet;
+export default ToastBottomSheet;

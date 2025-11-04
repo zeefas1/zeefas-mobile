@@ -3,7 +3,7 @@ import AuthGoBack from "@/components/AuthGoBack";
 import Button from "@/components/Button";
 import CustomBottomSheet, { SheetRef } from "@/components/CustomBottomSheet";
 import PasswordInputComponent from "@/components/PasswordInput";
-import SuccessBottomSheet from "@/components/SuccessBottomSheet";
+import ToastBottomSheet from "@/components/ToastBottomSheet";
 import Wrapper from "@/components/Wrapper";
 import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
@@ -94,7 +94,7 @@ const ResetPassword = () => {
       </KeyboardAvoidingView>
 
       <CustomBottomSheet ref={SuccessSheet} snapPoint={55}>
-        <SuccessBottomSheet
+        <ToastBottomSheet
           desc="Your password have been reset successfully, you can now log into point of sale with your email and new password."
           title="Password reset successful"
           showBtn
