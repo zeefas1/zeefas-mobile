@@ -8,4 +8,5 @@ export const icons = {
   otpIcon: require("./otp-icon.png"),
   successIcon: require("./success-icon.png"),
   wrapperBottomImage: require("./wrapper-bottom-image.png"),
+  logoIcon: require("./logo.png"),
 };
