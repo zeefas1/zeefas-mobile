@@ -6,10 +6,11 @@ import Button from "../Button";
 
 interface ChooseUsernameProps {
   setCurrentStep: Dispatch<SetStateAction<number>>;
+  setUsername: Dispatch<SetStateAction<string>>;
 }
 
-const ChooseUsername = ({ setCurrentStep }: ChooseUsernameProps) => {
-  const [username, setUsername] = useState("");
+const ChooseUsername = ({ setCurrentStep, setUsername }: ChooseUsernameProps) => {
+  const [username, setLocalUsername] = useState("");
   const [touched, setTouched] = useState(false);
 
   const isValid = useMemo(() => {
@@ -31,6 +32,7 @@ const ChooseUsername = ({ setCurrentStep }: ChooseUsernameProps) => {
   const handleProceed = () => {
     setTouched(true);
     if (!isValid) return;
+    setUsername(username);
     setCurrentStep(3);
   };
 
@@ -46,7 +48,7 @@ const ChooseUsername = ({ setCurrentStep }: ChooseUsernameProps) => {
       <View style={styles.inputWrapper}>
         <TextInput
           value={username}
-          onChangeText={setUsername}
+          onChangeText={setLocalUsername}
           onBlur={() => setTouched(true)}
           autoCapitalize="none"
           autoCorrect={false}
