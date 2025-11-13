@@ -77,7 +77,7 @@ const SelectCard = ({
   icon: ImageSourcePropType;
 }) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
       <View style={styles.cardIcon}>
         <Image source={icon} style={styles.icon} />
       </View>
@@ -85,7 +85,9 @@ const SelectCard = ({
         <Text style={styles.cardTitle}>{title}</Text>
         <Text style={styles.cardDesc}>{description}</Text>
       </View>
-      <View style={[styles.radio, selected && styles.radioSelected]} />
+      <View style={[styles.radio, selected && styles.radioSelected]}>
+        {selected && <View style={styles.radioDot} />}
+      </View>
     </TouchableOpacity>
   );
 };
@@ -148,14 +150,23 @@ const styles = StyleSheet.create({
   radio: {
     width: 20,
     height: 20,
-    borderRadius: 100,
+    borderRadius: 10,
     borderWidth: 2,
     borderColor: "#D1D5DB",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
   },
 
   radioSelected: {
-    backgroundColor: "#0C503F",
-    borderColor: "#0C503F",
+    borderColor: "#4BB96C",
+  },
+
+  radioDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#4BB96C",
   },
 });
 
