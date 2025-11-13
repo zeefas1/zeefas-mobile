@@ -1,7 +1,15 @@
+import { icons } from "@/assets/icons";
 import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
+import { Image } from "expo-image";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Button from "../Button";
 
 interface AccountTypeProps {
@@ -26,12 +34,14 @@ const AccountType = ({ setCurrentStep }: AccountTypeProps) => {
 
       <View style={{ marginTop: 24, gap: 16 }}>
         <SelectCard
+          icon={icons?.customerBagIcon}
           title="Customer account"
           description="Shop or Hire great talents on Zeefas"
           selected={selected === "customer"}
           onPress={() => setSelected("customer")}
         />
         <SelectCard
+          icon={icons?.vendorHouseIcon}
           title="Vendor / Service provider"
           description="Sell product or provide service to people"
           selected={selected === "vendor"}
@@ -58,15 +68,19 @@ const SelectCard = ({
   description,
   selected,
   onPress,
+  icon,
 }: {
   title: string;
   description: string;
   selected?: boolean;
   onPress?: () => void;
+  icon: ImageSourcePropType;
 }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-      <View style={styles.cardIcon} />
+      <View style={styles.cardIcon}>
+        <Image source={icon} style={styles.icon} />
+      </View>
       <View style={{ flex: 1 }}>
         <Text style={styles.cardTitle}>{title}</Text>
         <Text style={styles.cardDesc}>{description}</Text>
@@ -107,8 +121,15 @@ const styles = StyleSheet.create({
   cardIcon: {
     width: 50,
     height: 50,
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 16,
     backgroundColor: "#4BB96C1F",
+  },
+
+  icon: {
+    width: 30,
+    height: 30,
   },
 
   cardTitle: {

@@ -9,4 +9,6 @@ export const icons = {
   successIcon: require("./success-icon.png"),
   wrapperBottomImage: require("./wrapper-bottom-image.png"),
   logoIcon: require("./logo.png"),
+  vendorHouseIcon: require("./vendor-house.png"),
+  customerBagIcon: require("./bag.png"),
 };
