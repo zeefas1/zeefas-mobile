@@ -95,7 +95,7 @@ const Register = () => {
           />
 
           <TextInputComponent
-            label="email address"
+            label="Email address"
             value={userData.email}
             onChangeText={handleChange("email")}
             placeholder="Input your email"
@@ -128,10 +128,10 @@ const Register = () => {
           <View style={{ marginTop: 40, width: "100%" }}>
             <Button
               title="Sign up"
-              onPress={() => {}}
+              onPress={() => router.push("/(user-onboarding)/account-type")}
               type="primary"
               loading={loading}
-              disabled={isDisabled}
+              // disabled={isDisabled}
             />
           </View>
 

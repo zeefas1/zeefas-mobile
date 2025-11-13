@@ -42,7 +42,7 @@ const Login = () => {
         </View>
         <View style={{ marginTop: 24, width: "100%" }}>
           <TextInputComponent
-            label="email address"
+            label="Email address"
             value={email}
             onChangeText={setEmail}
             placeholder="Input your email"
@@ -55,7 +55,7 @@ const Login = () => {
           <PasswordInputComponent
             value={password}
             onChangeText={setPassword}
-            label="password"
+            label="Password"
             placeholder="Input password"
             iconName="lock-closed"
             error={error && error?.password}
