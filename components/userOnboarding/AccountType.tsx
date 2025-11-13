@@ -49,7 +49,7 @@ const AccountType = ({ setCurrentStep }: AccountTypeProps) => {
         />
       </View>
 
-      <View style={{ flex: 1 }} />
+      <View style={{ flex: 0.95 }} />
 
       <View style={{ marginBottom: 24 }}>
         <Button

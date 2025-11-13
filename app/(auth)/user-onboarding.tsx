@@ -1,6 +1,7 @@
 import AuthGoBack from "@/components/AuthGoBack";
 import ProgressBar from "@/components/ProgressBar";
 import AccountType from "@/components/userOnboarding/AccountType";
+import ChooseUsername from "@/components/userOnboarding/ChooseUsername";
 import Wrapper from "@/components/Wrapper";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -16,6 +17,10 @@ const UserOnboarding = () => {
       </View>
 
       {currentStep === 1 && <AccountType setCurrentStep={setCurrentStep} />}
+
+      {currentStep === 2 && (
+        <ChooseUsername setCurrentStep={setCurrentStep} />
+      )}
     </Wrapper>
   );
 };
