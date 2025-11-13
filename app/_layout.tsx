@@ -84,10 +84,6 @@ export default function RootLayout() {
                       name="(auth)"
                       options={{ headerShown: false }}
                     />
-                    <Stack.Screen
-                      name="(user-onboarding)"
-                      options={{ headerShown: false }}
-                    />
                   </Stack.Protected>
                 </Stack>
                 <StatusBar style="auto" />

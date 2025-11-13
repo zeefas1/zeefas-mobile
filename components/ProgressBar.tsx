@@ -16,7 +16,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     <View
       style={{
         height: 12,
-        width: "100%",
+        flex: 1,
         backgroundColor: "#E5E7EB",
         borderRadius: 100,
       }}

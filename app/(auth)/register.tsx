@@ -128,7 +128,7 @@ const Register = () => {
           <View style={{ marginTop: 40, width: "100%" }}>
             <Button
               title="Sign up"
-              onPress={() => router.push("/(user-onboarding)/account-type")}
+              onPress={() => router.push("/(auth)/user-onboarding")}
               type="primary"
               loading={loading}
               // disabled={isDisabled}

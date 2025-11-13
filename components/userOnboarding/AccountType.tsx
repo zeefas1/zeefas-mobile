@@ -1,28 +1,22 @@
-import AuthGoBack from "@/components/AuthGoBack";
-import Button from "@/components/Button";
-import ProgressBar from "@/components/ProgressBar";
-import Wrapper from "@/components/Wrapper";
 import { FontFamily } from "@/constants/FontFamily";
 import { FontSizes } from "@/constants/FontSizes";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Button from "../Button";
 
-const AccountType = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+interface AccountTypeProps {
+  setCurrentStep: Dispatch<SetStateAction<number>>;
+}
+
+const AccountType = ({ setCurrentStep }: AccountTypeProps) => {
   const [selected, setSelected] = useState<"customer" | "vendor" | null>(null);
 
   const handleProceed = () => {
     if (!selected) return;
     setCurrentStep(2);
   };
-
   return (
-    <Wrapper showBottomImage bg="#fff" paddingHorizontal={24}>
-      <View style={styles.headerTop}>
-        <AuthGoBack marginTop={0} marginHorizontal={0} />
-        <ProgressBar currentStep={currentStep} />
-      </View>
-
+    <>
       <View style={{ marginTop: 24 }}>
         <Text style={styles.title}>Select Account type</Text>
         <Text style={styles.subtitle}>
@@ -55,7 +49,7 @@ const AccountType = () => {
           onPress={handleProceed}
         />
       </View>
-    </Wrapper>
+    </>
   );
 };
 
@@ -83,15 +77,11 @@ const SelectCard = ({
 };
 
 const styles = StyleSheet.create({
-  headerTop: {
-    gap: 16,
-  },
-
   title: {
-    fontSize: FontSizes["6xl"],
+    fontSize: FontSizes["5xl"],
     lineHeight: 42,
     fontFamily: FontFamily.SemiBold,
-    color: "#1F2937",
+    color: "#111827",
   },
 
   subtitle: {
@@ -109,22 +99,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E5E7EB",
     borderRadius: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+    padding: 18,
     backgroundColor: "#fff",
+    height: 86,
   },
 
   cardIcon: {
-    width: 56,
-    height: 56,
+    width: 50,
+    height: 50,
     borderRadius: 16,
-    backgroundColor: "#ECFDF5",
+    backgroundColor: "#4BB96C1F",
   },
 
   cardTitle: {
-    fontSize: FontSizes["2xl"],
-    fontFamily: FontFamily.SemiBold,
-    color: "#111827",
+    fontSize: FontSizes["lg"],
+    fontFamily: FontFamily.Medium,
+    color: "#000",
   },
 
   cardDesc: {
@@ -135,8 +125,8 @@ const styles = StyleSheet.create({
   },
 
   radio: {
-    width: 24,
-    height: 24,
+    width: 20,
+    height: 20,
     borderRadius: 100,
     borderWidth: 2,
     borderColor: "#D1D5DB",
